@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.os.Build;
+import android.graphics.Color;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
@@ -103,7 +104,10 @@ public class GCMIntentService extends GCMBaseIntentService {
       .setContentIntent(contentIntent)
       .setAutoCancel(true);
 
-    mBuilder.setColor(0xffd10000);
+    String color = extras.getString("color");
+    if(color != null) {
+      mBuilder.setColor(Color.parseColor(color));  
+    }
 
     String message = extras.getString("message");
     if (message != null) {
